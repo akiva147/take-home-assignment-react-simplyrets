@@ -1,22 +1,23 @@
 import { Outlet, useLocation } from 'react-router';
 import classes from './layout.module.scss';
+import { useMemo } from 'react';
 
 export interface LayoutProps {}
 
 export const Layout = (props: LayoutProps) => {
   const location = useLocation();
-  const { hash, pathname, search } = location;
+
+  const title = useMemo(() => {
+    if (location.pathname === '/property-listings') return 'Property Listings';
+    else return location.pathname;
+  }, [location.pathname]);
 
   return (
-    <div>
-      <header>
-        Pathname: <b>{pathname}</b>
-        <br />
-        Search params: <b>{search}</b>
-        <br />
-        Hash: <b>{hash}</b>
-      </header>
-      <Outlet />
+    <div className={classes.container}>
+      <header>{title}</header>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 };

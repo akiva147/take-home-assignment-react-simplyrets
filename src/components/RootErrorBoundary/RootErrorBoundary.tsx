@@ -1,5 +1,4 @@
 import { useRouteError } from 'react-router';
-import classes from './root-error-boundary.module.scss';
 
 export interface RootErrorBoundaryProps {}
 
